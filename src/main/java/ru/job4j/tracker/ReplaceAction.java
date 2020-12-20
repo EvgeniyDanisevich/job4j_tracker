@@ -1,6 +1,12 @@
 package ru.job4j.tracker;
 
 public class ReplaceAction implements UserAction {
+    private final Output out;
+
+    public ReplaceAction(Output out) {
+        this.out = out;
+    }
+
     @Override
     public String name() {
         return  "=== Edit item ====";
@@ -13,9 +19,9 @@ public class ReplaceAction implements UserAction {
         Item item = new Item(name);
         boolean isAdded = tracker.replace(id, item);
         if (isAdded) {
-            System.out.println("Item is edited");
+            out.println("Item is edited");
         } else {
-            System.out.println("Id is not found");
+            out.println("Id is not found");
         }
         return true;
     }
