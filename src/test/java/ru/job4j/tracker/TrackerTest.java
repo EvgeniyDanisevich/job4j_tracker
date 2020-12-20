@@ -39,4 +39,21 @@ public class TrackerTest {
         tracker.delete(id);
         assertThat(tracker.findById(id), is(nullValue()));
     }
+
+    @Test
+    public void whenFindName() {
+        Tracker tracker = new Tracker();
+        Item first = new Item("First");
+        Item second = new Item("Second");
+        Item third = new Item("First");
+        tracker.add(first);
+        tracker.add(second);
+        tracker.add(third);
+        String name = "First";
+        Item[] items = tracker.findByName(name);
+        Item[] itemsControl = new Item[2];
+        itemsControl[0] = first;
+        itemsControl[1] = third;
+        assertThat(items, is(itemsControl));
+    }
 }
