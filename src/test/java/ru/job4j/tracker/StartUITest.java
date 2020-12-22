@@ -86,8 +86,8 @@ public class StartUITest {
                 new Exit()
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(new String[] {tracker.findAll()[0].toString(), tracker.findAll()[1].toString()},
-                is(new String[] {firstItem.toString(), secondItem.toString()}));
+        assertThat(new Item[] {tracker.findAll()[0], tracker.findAll()[1]},
+                is(new Item[] {firstItem, secondItem}));
     }
 
     @Test
@@ -105,8 +105,8 @@ public class StartUITest {
                 new Exit()
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(new String[] {tracker.findByName(name)[0].toString(), tracker.findByName(name)[1].toString()},
-                is(new String[] {firstItem.toString(), secondItem.toString()}));
+        assertThat(new Item[] {tracker.findByName(name)[0], tracker.findByName(name)[1]},
+                is(new Item[] {firstItem, secondItem}));
     }
 
     @Test
@@ -122,7 +122,7 @@ public class StartUITest {
                 new Exit()
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()).toString(), is(item.toString()));
+        assertThat(tracker.findById(item.getId()), is(item));
     }
 
     @Test
