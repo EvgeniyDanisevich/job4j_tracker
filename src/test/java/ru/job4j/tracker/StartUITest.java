@@ -71,4 +71,57 @@ public class StartUITest {
                         "0. Exit" + System.lineSeparator()
         ));
     }
+
+    @Test
+    public void whenFindAllItem() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item firstItem = tracker.add(new Item("First Item"));
+        Item secondItem = tracker.add(new Item("Second Item"));
+        Input in = new StubInput(
+                new String[] {"0", "1"}
+        );
+        UserAction[] actions = {
+                new FindAllAction(out),
+                new Exit()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(new String[] {tracker.findAll()[0].toString(), tracker.findAll()[1].toString()},
+                is(new String[] {firstItem.toString(), secondItem.toString()}));
+    }
+
+    @Test
+    public void whenFindByNameItem() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        String name = "Item";
+        Item firstItem = tracker.add(new Item(name));
+        Item secondItem = tracker.add(new Item(name));
+        Input in = new StubInput(
+                new String[] {"0", name, "1"}
+        );
+        UserAction[] actions = {
+                new FindByNameAction(out),
+                new Exit()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(new String[] {tracker.findByName(name)[0].toString(), tracker.findByName(name)[1].toString()},
+                is(new String[] {firstItem.toString(), secondItem.toString()}));
+    }
+
+    @Test
+    public void whenFindByIdItem() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Item"));
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(item.getId()), "1"}
+        );
+        UserAction[] actions = {
+                new FindByIdAction(out),
+                new Exit()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(tracker.findById(item.getId()).toString(), is(item.toString()));
+    }
 }
