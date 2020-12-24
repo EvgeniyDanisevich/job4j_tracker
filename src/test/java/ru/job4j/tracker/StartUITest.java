@@ -86,8 +86,13 @@ public class StartUITest {
                 new Exit()
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(new Item[] {tracker.findAll()[0], tracker.findAll()[1]},
-                is(new Item[] {firstItem, secondItem}));
+        assertThat(out.toString(),
+                is("Menu." + System.lineSeparator() + "0. === Show all items ====" + System.lineSeparator() +
+                        "1. Exit" + System.lineSeparator() + firstItem.toString() + System.lineSeparator() +
+                        secondItem.toString() + System.lineSeparator()
+                        + "Menu." + System.lineSeparator() + "0. === Show all items ====" +
+                        System.lineSeparator() + "1. Exit" + System.lineSeparator()
+                ));
     }
 
     @Test
@@ -105,8 +110,13 @@ public class StartUITest {
                 new Exit()
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(new Item[] {tracker.findByName(name)[0], tracker.findByName(name)[1]},
-                is(new Item[] {firstItem, secondItem}));
+        assertThat(out.toString(),
+                is("Menu." + System.lineSeparator() + "0. === Find items by name ====" + System.lineSeparator() +
+                        "1. Exit" + System.lineSeparator() + firstItem.toString() + System.lineSeparator() +
+                        secondItem.toString() + System.lineSeparator()
+                        + "Menu." + System.lineSeparator() + "0. === Find items by name ====" +
+                        System.lineSeparator() + "1. Exit" + System.lineSeparator()
+                ));
     }
 
     @Test
@@ -122,7 +132,12 @@ public class StartUITest {
                 new Exit()
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()), is(item));
+        assertThat(out.toString(), is(
+                "Menu." + System.lineSeparator() + "0. === Find item by Id ====" + System.lineSeparator() +
+                        "1. Exit" + System.lineSeparator() + item.toString() + System.lineSeparator()
+                        + "Menu." + System.lineSeparator() + "0. === Find item by Id ====" +
+                        System.lineSeparator() + "1. Exit" + System.lineSeparator()
+        ));
     }
 
     @Test
