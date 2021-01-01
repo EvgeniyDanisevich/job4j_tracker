@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Objects;
 
-public class Item implements Comparable<Item>, Comparator<Item> {
+public class Item implements Comparable<Item> {
     private int id;
     private String name;
     private LocalDateTime created = LocalDateTime.now();
@@ -81,10 +81,5 @@ public class Item implements Comparable<Item>, Comparator<Item> {
     @Override
     public int compareTo(Item o) {
         return Integer.compare(id, o.getId());
-    }
-
-    @Override
-    public int compare(Item o1, Item o2) {
-        return Integer.compare(o1.getId(), o2.getId());
     }
 }
