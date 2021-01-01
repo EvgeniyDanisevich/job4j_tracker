@@ -15,8 +15,10 @@ public class Battery {
     public static void main(String[] args) {
         Battery batteryOne = new Battery(10);
         Battery batteryTwo = new Battery(15);
-        System.out.println("Before exchange: batteryOne " + batteryOne.load + ". " + "batteryTwo " + batteryTwo.load);
+        System.out.println("Before exchange: batteryOne "
+                + batteryOne.load + ". " + "batteryTwo " + batteryTwo.load);
         batteryOne.exchange(batteryTwo);
-        System.out.println("After exchange: batteryOne " + batteryOne.load + ". " + "batteryTwo " + batteryTwo.load);
+        System.out.println("After exchange: batteryOne "
+                + batteryOne.load + ". " + "batteryTwo " + batteryTwo.load);
     }
 }

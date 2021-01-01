@@ -11,7 +11,7 @@ public class Item implements Comparable<Item> {
     private LocalDateTime created = LocalDateTime.now();
     private String creation = creationDateFormat();
 
-    public Item(){
+    public Item() {
     }
 
     public Item(int id) {
@@ -55,22 +55,26 @@ public class Item implements Comparable<Item> {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", creation='" + creation + '\'' +
-                '}';
+        return "Item{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", creation='" + creation + '\''
+                + '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Item item = (Item) o;
-        return id == item.id &&
-                Objects.equals(name, item.name) &&
-                Objects.equals(created, item.created) &&
-                Objects.equals(creation, item.creation);
+        return id == item.id
+                && Objects.equals(name, item.name)
+                && Objects.equals(created, item.created)
+                && Objects.equals(creation, item.creation);
     }
 
     @Override

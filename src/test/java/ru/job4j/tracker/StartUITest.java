@@ -67,8 +67,8 @@ public class StartUITest {
         actions.add(new Exit());
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator() +
-                        "0. Exit" + System.lineSeparator()
+                "Menu." + System.lineSeparator()
+                        + "0. Exit" + System.lineSeparator()
         ));
     }
 
@@ -86,11 +86,12 @@ public class StartUITest {
         actions.add(new Exit());
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(),
-                is("Menu." + System.lineSeparator() + "0. === Show all items ====" + System.lineSeparator() +
-                        "1. Exit" + System.lineSeparator() + firstItem.toString() + System.lineSeparator() +
-                        secondItem.toString() + System.lineSeparator()
-                        + "Menu." + System.lineSeparator() + "0. === Show all items ====" +
-                        System.lineSeparator() + "1. Exit" + System.lineSeparator()
+                is("Menu." + System.lineSeparator()
+                        + "0. === Show all items ====" + System.lineSeparator()
+                        + "1. Exit" + System.lineSeparator() + firstItem.toString()
+                        + System.lineSeparator() + secondItem.toString() + System.lineSeparator()
+                        + "Menu." + System.lineSeparator() + "0. === Show all items ===="
+                        + System.lineSeparator() + "1. Exit" + System.lineSeparator()
                 ));
     }
 
@@ -109,11 +110,12 @@ public class StartUITest {
         actions.add(new Exit());
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(),
-                is("Menu." + System.lineSeparator() + "0. === Find items by name ====" + System.lineSeparator() +
-                        "1. Exit" + System.lineSeparator() + firstItem.toString() + System.lineSeparator() +
-                        secondItem.toString() + System.lineSeparator()
-                        + "Menu." + System.lineSeparator() + "0. === Find items by name ====" +
-                        System.lineSeparator() + "1. Exit" + System.lineSeparator()
+                is("Menu." + System.lineSeparator() + "0. === Find items by name ===="
+                        + System.lineSeparator() + "1. Exit" + System.lineSeparator()
+                        + firstItem.toString() + System.lineSeparator() + secondItem.toString()
+                        + System.lineSeparator() + "Menu." + System.lineSeparator()
+                        + "0. === Find items by name ====" + System.lineSeparator()
+                        + "1. Exit" + System.lineSeparator()
                 ));
     }
 
@@ -130,10 +132,11 @@ public class StartUITest {
         actions.add(new Exit());
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator() + "0. === Find item by Id ====" + System.lineSeparator() +
-                        "1. Exit" + System.lineSeparator() + item.toString() + System.lineSeparator()
-                        + "Menu." + System.lineSeparator() + "0. === Find item by Id ====" +
-                        System.lineSeparator() + "1. Exit" + System.lineSeparator()
+                "Menu." + System.lineSeparator() + "0. === Find item by Id ===="
+                        + System.lineSeparator() + "1. Exit" + System.lineSeparator()
+                        + item.toString() + System.lineSeparator() + "Menu."
+                        + System.lineSeparator() + "0. === Find item by Id ===="
+                        + System.lineSeparator() + "1. Exit" + System.lineSeparator()
         ));
     }
 
@@ -141,7 +144,7 @@ public class StartUITest {
     public void whenInvalidExit() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] { "10", "0" }
+                new String[] {"10", "0"}
         );
         Tracker tracker = new Tracker();
         List<UserAction> actions = new ArrayList<>();
