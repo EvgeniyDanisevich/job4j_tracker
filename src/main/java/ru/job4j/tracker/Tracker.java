@@ -33,9 +33,9 @@ public class Tracker {
     }
 
     private int indexOf(int id) {
-        for (Item item : items) {
-            if (item.getId() == id) {
-                return items.indexOf(item);
+        for (int index = 0; index < items.size(); index++) {
+            if (items.get(index).getId() == id) {
+                return index;
             }
         }
         return -1;
