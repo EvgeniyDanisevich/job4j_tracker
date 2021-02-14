@@ -8,8 +8,8 @@ import java.util.Objects;
 public class Item implements Comparable<Item> {
     private int id;
     private String name;
-    private LocalDateTime created = LocalDateTime.now();
-    private String creation = creationDateFormat();
+//    private LocalDateTime created = LocalDateTime.now();
+//    private String creation = creationDateFormat();
 
     public Item() {
     }
@@ -43,22 +43,22 @@ public class Item implements Comparable<Item> {
         this.name = name;
     }
 
-    private LocalDateTime getCreated() {
-        return created;
-    }
+//    private LocalDateTime getCreated() {
+//        return created;
+//    }
 
-    public String creationDateFormat() {
-        this.created = created;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
-        return created.format(formatter);
-    }
+//    public String creationDateFormat() {
+//        this.created = created;
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
+//        return created.format(formatter);
+//    }
 
     @Override
     public String toString() {
         return "Item{"
                 + "id=" + id
                 + ", name='" + name + '\''
-                + ", creation='" + creation + '\''
+//                + ", creation='" + creation + '\''
                 + '}';
     }
 
@@ -72,14 +72,14 @@ public class Item implements Comparable<Item> {
         }
         Item item = (Item) o;
         return id == item.id
-                && Objects.equals(name, item.name)
-                && Objects.equals(created, item.created)
-                && Objects.equals(creation, item.creation);
+                && Objects.equals(name, item.name);
+//                && Objects.equals(created, item.created)
+//                && Objects.equals(creation, item.creation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, created, creation);
+        return Objects.hash(id, name/*, created, creation*/);
     }
 
     @Override
