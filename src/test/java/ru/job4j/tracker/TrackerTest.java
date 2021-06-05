@@ -13,7 +13,7 @@ import static org.hamcrest.core.IsNull.nullValue;
 public class TrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item();
         item.setName("test1");
         tracker.add(item);
@@ -23,7 +23,7 @@ public class TrackerTest {
 
     @Test
     public void whenReplace() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item bug = new Item();
         bug.setName("Bug");
         tracker.add(bug);
@@ -36,7 +36,7 @@ public class TrackerTest {
 
     @Test
     public void whenDelete() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item bug = new Item();
         bug.setName("Bug");
         tracker.add(bug);
@@ -47,7 +47,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindName() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item first = new Item("First");
         Item second = new Item("Second");
         Item third = new Item("First");
@@ -64,7 +64,7 @@ public class TrackerTest {
 
     @Test
     public void sortReverseById() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item first = new Item("First");
         Item second = new Item("Second");
         Item third = new Item("Third");
@@ -72,7 +72,7 @@ public class TrackerTest {
         tracker.add(second);
         tracker.add(third);
         List<Item> items = tracker.findAll();
-        Collections.sort(items, Collections.reverseOrder());
+        items.sort(Collections.reverseOrder());
         List<Item> expected = new ArrayList<>();
         expected.add(third);
         expected.add(second);
@@ -82,7 +82,7 @@ public class TrackerTest {
 
     @Test
     public void sortById() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item first = new Item("First");
         Item third = new Item("Third");
         Item second = new Item("Second");
@@ -90,7 +90,7 @@ public class TrackerTest {
         tracker.add(second);
         tracker.add(third);
         List<Item> items = tracker.findAll();
-        Collections.sort(items, Collections.reverseOrder());
+        items.sort(Collections.reverseOrder());
         Collections.sort(items);
         List<Item> expected = new ArrayList<>();
         expected.add(first);

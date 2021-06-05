@@ -5,7 +5,6 @@ import org.junit.Test;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -16,7 +15,8 @@ import static org.junit.Assert.assertThat;
 public class SqlTrackerTest {
 
     public Connection init() {
-        try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
+        try (InputStream in = SqlTracker.class.getClassLoader()
+                .getResourceAsStream("app.properties")) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
@@ -33,7 +33,8 @@ public class SqlTrackerTest {
     @Test
     public void createItem() throws Exception {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            tracker.add(new Item("desc"));
+            Item item = new Item("desc");
+            tracker.add(item);
             assertThat(tracker.findByName("desc").size(), is(1));
         }
     }
@@ -41,9 +42,11 @@ public class SqlTrackerTest {
     @Test
     public void replaceItem() throws Exception {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            tracker.add(new Item("desc"));
-            tracker.replace("1", new Item("no_desc"));
-            assertThat(tracker.findById("1").getName(), is("no_desc"));
+            Item item1 = new Item("desc");
+            Item item2 = new Item("no_desc");
+            tracker.add(item1);
+            tracker.replace(String.valueOf(item1.getId()), item2);
+            assertThat(tracker.findById(String.valueOf(item1.getId())).getName(), is("no_desc"));
         }
     }
 
@@ -59,12 +62,11 @@ public class SqlTrackerTest {
     @Test
     public void findAllItem() throws Exception {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            tracker.add(new Item("desc"));
-            tracker.add(new Item("desc_2"));
-            List<Item> items = new ArrayList<>();
-            items.add(new Item(1,"desc"));
-            items.add(new Item(2,"desc_2"));
-            assertThat(tracker.findAll(), is(items));
+            Item item1 = new Item("desc");
+            Item item2 = new Item("no_desc");
+            tracker.add(item1);
+            tracker.add(item2);
+            assertThat(tracker.findAll(), is(List.of(item1, item2)));
         }
     }
 
@@ -79,8 +81,9 @@ public class SqlTrackerTest {
     @Test
     public void findById() throws Exception {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            tracker.add(new Item("desc"));
-            assertThat(tracker.findById("1").getName(), is("desc"));
+            Item item = new Item("desc");
+            tracker.add(item);
+            assertThat(tracker.findById(String.valueOf(item.getId())).getName(), is("desc"));
         }
     }
 }
