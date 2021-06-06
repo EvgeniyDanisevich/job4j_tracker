@@ -3,14 +3,40 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MemTracker {
+public class MemTracker implements Store {
     private List<Item> items = new ArrayList<>();
     private int ids = 1;
+
+    @Override
+    public void init() {
+
+    }
 
     public Item add(Item item) {
         item.setId(ids++);
         items.add(item);
         return item;
+    }
+
+    @Override
+    public boolean replace(String id, Item item) {
+        int index = indexOf(Integer.parseInt(id));
+        if (index != -1) {
+            item.setId(Integer.parseInt(id));
+            items.set(index, item);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) {
+        int index = indexOf(Integer.parseInt(id));
+        if (index != -1) {
+            items.remove(index);
+            return true;
+        }
+        return false;
     }
 
     public List<Item> findAll() {
@@ -27,8 +53,9 @@ public class MemTracker {
         return itemList;
     }
 
-    public Item findById(int id) {
-        int index = indexOf(id);
+    @Override
+    public Item findById(String id) {
+        int index = indexOf(Integer.parseInt(id));
         return index != -1 ? items.get(index) : null;
     }
 
@@ -41,22 +68,8 @@ public class MemTracker {
         return -1;
     }
 
-    public boolean replace(int id, Item item) {
-        int index = indexOf(id);
-        if (index != -1) {
-            item.setId(id);
-            items.set(index, item);
-            return true;
-        }
-        return false;
-    }
+    @Override
+    public void close() throws Exception {
 
-    public boolean delete(int id) {
-        int index = indexOf(id);
-        if (index != -1) {
-            items.remove(index);
-            return true;
-        }
-        return false;
     }
 }
