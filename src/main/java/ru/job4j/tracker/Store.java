@@ -4,7 +4,8 @@ import java.util.List;
 
 public interface Store extends AutoCloseable {
 
-    void init();
+    default void init() {
+    }
 
     Item add(Item item);
 
