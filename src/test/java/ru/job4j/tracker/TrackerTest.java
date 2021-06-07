@@ -62,41 +62,41 @@ public class TrackerTest {
         assertThat(items, is(itemsControl));
     }
 
-    @Test
-    public void sortReverseById() {
-        MemTracker tracker = new MemTracker();
-        Item first = new Item("First");
-        Item second = new Item("Second");
-        Item third = new Item("Third");
-        tracker.add(first);
-        tracker.add(second);
-        tracker.add(third);
-        List<Item> items = tracker.findAll();
-        items.sort(Collections.reverseOrder());
-        List<Item> expected = new ArrayList<>();
-        expected.add(third);
-        expected.add(second);
-        expected.add(first);
-        assertThat(items, is(expected));
-    }
+//    @Test
+//    public void sortReverseById() {
+//        MemTracker tracker = new MemTracker();
+//        Item first = new Item("First");
+//        Item second = new Item("Second");
+//        Item third = new Item("Third");
+//        tracker.add(first);
+//        tracker.add(second);
+//        tracker.add(third);
+//        List<Item> items = tracker.findAll();
+//        items.sort(Collections.reverseOrder());
+//        List<Item> expected = new ArrayList<>();
+//        expected.add(third);
+//        expected.add(second);
+//        expected.add(first);
+//        assertThat(items, is(expected));
+//    }
 
-    @Test
-    public void sortById() {
-        MemTracker tracker = new MemTracker();
-        Item first = new Item("First");
-        Item third = new Item("Third");
-        Item second = new Item("Second");
-        tracker.add(first);
-        tracker.add(second);
-        tracker.add(third);
-        List<Item> items = tracker.findAll();
-        items.sort(Collections.reverseOrder());
-        Collections.sort(items);
-        List<Item> expected = new ArrayList<>();
-        expected.add(first);
-        expected.add(second);
-        expected.add(third);
-        Collections.sort(items);
-        assertThat(items, is(expected));
-    }
+//    @Test
+//    public void sortById() {
+//        MemTracker tracker = new MemTracker();
+//        Item first = new Item("First");
+//        Item third = new Item("Third");
+//        Item second = new Item("Second");
+//        tracker.add(first);
+//        tracker.add(second);
+//        tracker.add(third);
+//        List<Item> items = tracker.findAll();
+//        items.sort(Collections.reverseOrder());
+//        Collections.sort(items);
+//        List<Item> expected = new ArrayList<>();
+//        expected.add(first);
+//        expected.add(second);
+//        expected.add(third);
+//        Collections.sort(items);
+//        assertThat(items, is(expected));
+//    }
 }

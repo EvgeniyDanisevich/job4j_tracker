@@ -53,7 +53,7 @@ public class StartUI {
 
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
-        Input input = new ValidateInput(output, new ConsoleInput());;
+        Input input = new ValidateInput(output, new ConsoleInput());
         try (Store tracker = new SqlTracker(cn())) {
             tracker.init();
             List<UserAction> actions = new ArrayList<>();
