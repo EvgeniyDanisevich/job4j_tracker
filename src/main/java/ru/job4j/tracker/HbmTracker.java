@@ -33,6 +33,7 @@ public class HbmTracker implements Store, AutoCloseable {
             session.close();
             return false;
         }
+        updatedItem.setName(item.getName());
         session.beginTransaction();
         session.update(updatedItem);
         session.getTransaction().commit();
