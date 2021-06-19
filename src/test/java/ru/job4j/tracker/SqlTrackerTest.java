@@ -59,16 +59,16 @@ public class SqlTrackerTest {
         }
     }
 
-//    @Test
-//    public void findAllItem() throws Exception {
-//        try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-//            Item item1 = new Item("desc");
-//            Item item2 = new Item("no_desc");
-//            tracker.add(item1);
-//            tracker.add(item2);
-//            assertThat(tracker.findAll(), is(List.of(item1, item2)));
-//        }
-//    }
+    @Test
+    public void findAllItem() throws Exception {
+        try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
+            Item item1 = new Item("desc");
+            Item item2 = new Item("no_desc");
+            tracker.add(item1);
+            tracker.add(item2);
+            assertThat(tracker.findAll(), is(List.of(item1, item2)));
+        }
+    }
 
     @Test
     public void findByName() throws Exception {
